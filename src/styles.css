@@ -1,0 +1,224 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* NEXORA AI — deep space dark theme, aurora gradients, glass surfaces */
+:root {
+  --radius: 0.875rem;
+  /* Deep space black #050816 */
+  --background: oklch(0.105 0.04 270);
+  --foreground: oklch(0.97 0.01 250);
+  --card: oklch(0.16 0.04 270);
+  --card-foreground: oklch(0.97 0.01 250);
+  --popover: oklch(0.16 0.04 270);
+  --popover-foreground: oklch(0.97 0.01 250);
+  /* Neon violet primary */
+  --primary: oklch(0.68 0.24 295);
+  --primary-foreground: oklch(0.1 0.02 270);
+  /* Electric blue secondary */
+  --secondary: oklch(0.22 0.06 270);
+  --secondary-foreground: oklch(0.97 0.01 250);
+  --muted: oklch(0.2 0.04 270);
+  --muted-foreground: oklch(0.7 0.04 260);
+  /* Cyan accent */
+  --accent: oklch(0.78 0.16 220);
+  --accent-foreground: oklch(0.1 0.02 270);
+  --destructive: oklch(0.66 0.25 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: oklch(0.68 0.24 295);
+  --chart-1: oklch(0.68 0.24 295); /* violet */
+  --chart-2: oklch(0.78 0.16 220); /* cyan */
+  --chart-3: oklch(0.7 0.2 160);   /* mint */
+  --chart-4: oklch(0.78 0.19 60);  /* amber */
+  --chart-5: oklch(0.66 0.25 25);  /* magenta-red */
+  --sidebar: oklch(0.12 0.04 270);
+  --sidebar-foreground: oklch(0.97 0.01 250);
+  --sidebar-primary: oklch(0.68 0.24 295);
+  --sidebar-primary-foreground: oklch(0.1 0.02 270);
+  --sidebar-accent: oklch(0.22 0.06 270);
+  --sidebar-accent-foreground: oklch(0.97 0.01 250);
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-ring: oklch(0.68 0.24 295);
+
+  /* Brand-specific tokens */
+  --nx-violet: oklch(0.68 0.24 295);
+  --nx-blue: oklch(0.65 0.22 255);
+  --nx-cyan: oklch(0.82 0.17 210);
+  --nx-mint: oklch(0.78 0.19 165);
+  --nx-pink: oklch(0.72 0.25 350);
+  --nx-deep: #050816;
+
+  --gradient-aurora: linear-gradient(120deg, oklch(0.68 0.24 295) 0%, oklch(0.65 0.22 255) 45%, oklch(0.82 0.17 210) 100%);
+  --gradient-fire: linear-gradient(120deg, oklch(0.72 0.25 350), oklch(0.78 0.19 60));
+  --gradient-glow: radial-gradient(circle at 50% 0%, oklch(0.68 0.24 295 / 0.35), transparent 60%);
+
+  --shadow-glow-violet: 0 0 40px -10px oklch(0.68 0.24 295 / 0.6);
+  --shadow-glow-cyan: 0 0 40px -10px oklch(0.82 0.17 210 / 0.6);
+  --shadow-elevated: 0 20px 60px -20px oklch(0 0 0 / 0.6), 0 0 0 1px oklch(1 0 0 / 0.05);
+}
+
+/* Force dark across the whole app — Nexora is dark only */
+html, body { background: #050816; color-scheme: dark; }
+
+@layer base {
+  * { border-color: var(--color-border); }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-feature-settings: "cv11", "ss01";
+    background-image:
+      radial-gradient(1200px 600px at 10% -10%, oklch(0.68 0.24 295 / 0.18), transparent 60%),
+      radial-gradient(900px 500px at 100% 10%, oklch(0.82 0.17 210 / 0.14), transparent 60%),
+      radial-gradient(800px 400px at 50% 110%, oklch(0.72 0.25 350 / 0.12), transparent 60%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  ::selection { background: oklch(0.68 0.24 295 / 0.4); color: white; }
+}
+
+/* Reusable utilities */
+.glass {
+  background: linear-gradient(180deg, oklch(1 0 0 / 0.04), oklch(1 0 0 / 0.02));
+  backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid oklch(1 0 0 / 0.08);
+  border-radius: var(--radius);
+}
+.glass-strong {
+  background: linear-gradient(180deg, oklch(1 0 0 / 0.08), oklch(1 0 0 / 0.03));
+  backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid oklch(1 0 0 / 0.12);
+  border-radius: var(--radius);
+}
+.aurora-text {
+  background: var(--gradient-aurora);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.aurora-bg { background: var(--gradient-aurora); }
+.glow-violet { box-shadow: var(--shadow-glow-violet); }
+.glow-cyan { box-shadow: var(--shadow-glow-cyan); }
+
+.btn-hero {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 600;
+  color: white;
+  background: var(--gradient-aurora);
+  box-shadow: var(--shadow-glow-violet);
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+.btn-hero:hover { transform: translateY(-2px); filter: brightness(1.1); box-shadow: 0 0 60px -10px oklch(0.68 0.24 295 / 0.8); }
+
+.btn-ghost-glow {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.85rem 1.4rem; border-radius: 999px; font-weight: 600;
+  color: oklch(0.97 0.01 250);
+  border: 1px solid oklch(1 0 0 / 0.15);
+  background: oklch(1 0 0 / 0.04);
+  backdrop-filter: blur(20px);
+  transition: all .2s ease;
+}
+.btn-ghost-glow:hover { border-color: oklch(0.82 0.17 210 / 0.5); background: oklch(1 0 0 / 0.08); }
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.float-slow { animation: float-slow 6s ease-in-out infinite; }
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+.pulse-ring::after {
+  content: ""; position: absolute; inset: 0; border-radius: 9999px;
+  border: 2px solid oklch(0.82 0.17 210); animation: pulse-ring 2.2s ease-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, transparent, oklch(1 0 0 / 0.08), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 1.8s linear infinite;
+}
+
+/* Custom scrollbar */
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb { background: oklch(1 0 0 / 0.1); border-radius: 4px; }
+*::-webkit-scrollbar-thumb:hover { background: oklch(0.68 0.24 295 / 0.5); }
+
+/* Typography */
+html, body, button, input, textarea, select { font-family: "Inter", system-ui, sans-serif; }
+h1, h2, h3, h4, .display { font-family: "Space Grotesk", "Inter", sans-serif; letter-spacing: -0.02em; }
