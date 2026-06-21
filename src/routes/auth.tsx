@@ -97,9 +97,10 @@ function AuthPage() {
     setLoading(true);
     setError(null);
     try {
+      const redirectTo = (import.meta.env.VITE_SUPABASE_AUTH_REDIRECT as string) || window.location.origin + "/dashboard";
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
-        options: { redirectTo: window.location.origin + "/dashboard" },
+        options: { redirectTo },
       });
       if (error) throw error;
     } catch (e: any) {
